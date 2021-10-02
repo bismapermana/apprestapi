@@ -60,11 +60,27 @@ exports.ubahmahasiswa = function (req, res) {
   connection.query(
     "UPDATE mahasiswa SET nim=?, nama=?, jurusan=? WHERE id_mahasiswa=?",
     [nim, nama, jurusan, id],
-    function (error, ros, fields) {
+    function (error, rows, fields) {
       if (error) {
         console.log("error");
       } else {
         response.ok("berhasi ubah data", res);
+      }
+    }
+  );
+};
+
+exports.hapusmahasiswa = function (req, res) {
+  var id = req.body.id_mahasiswa;
+
+  connection.query(
+    "DELETE FROM mahasiswa WHERE id_mahasiswa=?",
+    [id],
+    function (error, rows, fields) {
+      if (error) {
+        console.log("error");
+      } else {
+        response.ok("berhasi hapus data", res);
       }
     }
   );
